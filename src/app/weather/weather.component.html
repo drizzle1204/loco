@@ -1,0 +1,96 @@
+<div class="col-md-6">
+    <form [formGroup]="weatherSearchForm" (ngSubmit)="sendToAPIUX(weatherSearchForm.value)">
+        <div class="form-group">
+            <i class="fas fa-map-marker-alt"></i>
+
+            <input class="form-control" type="search" id="weatherLocation" aria-describedby="weatherLocation" placeholder="Please input a Location" formControlName="location" aria-autocomplete="both" />
+            <i class="fa fa-search" aria-hidden="true"></i>
+
+        </div>
+
+    </form>
+</div>
+<mat-card class="mat-elevation-z5" style="width: 500px; margin-top: 20px;">
+    <mat-card-header>
+        <mat-card-title>{{this.weatherData?.location.name}}</mat-card-title>
+
+    </mat-card-header>
+    <mat-card-content>
+        <div class="flex-row">
+            <div class="temp">
+                <span class="big-text">Fri</span>
+                <span>{{this.weatherData?.current.temp_c}} </span>
+                <img src="//cdn.weatherapi.com/weather/64x64/night/143.png " />
+                <span>{{this.weatherData?.forecast.forecastday[0].day.condition.text}}</span>
+            </div>
+            <div class="temp">
+                <span class="big-text">Sat</span>
+                <span>{{this.weatherData?.forecast.forecastday[1].day.maxtemp_c}} </span>
+                <img src="//cdn.weatherapi.com/weather/64x64/day/116.png" />
+                <span>{{this.weatherData?.forecast.forecastday[1].day.condition.text}}</span>
+
+            </div>
+
+            <div class="temp">
+                <span class="big-text">Sun</span>
+                <span>{{this.weatherData?.forecast.forecastday[2].day.maxtemp_c}} </span>
+                <img src="//cdn.weatherapi.com/weather/64x64/day/113.png" />
+                <span>{{this.weatherData?.forecast.forecastday[2].day.condition.text}}</span>
+            </div>
+            <div class="temp">
+                <span class="big-text">Mon</span>
+                <span>{{this.weatherData?.current.temp_c}} </span>
+                <img src="//cdn.weatherapi.com/weather/64x64/night/143.png " />
+                <span>{{this.weatherData?.forecast.forecastday[2].day.condition.text}}</span>
+            </div>
+            <div class="temp">
+                <span class="big-text">Tue</span>
+                <span>{{this.weatherData?.current.temp_c}} </span>
+                <img src="//cdn.weatherapi.com/weather/64x64/night/143.png " />
+                <span>{{this.weatherData?.forecast.forecastday[2].day.condition.text}}</span>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+<mat-card class="mat-elevation-z5" style="margin-top: 40px; width: 500px;" id="box">
+    <mat-card-header>
+        <mat-card-title>{{this.weatherData?.current.temp_c}}</mat-card-title>
+        <img src="//cdn.weatherapi.com/weather/64x64/night/143.png " />
+    </mat-card-header>
+    <mat-card-content>
+        <div id="div">
+            <canvas id="mychart"></canvas>
+        </div>
+        <div class="flex" style="margin-left: 50px; margin-top: -200px;">
+            <div style=" width: 200px; padding: 10px;  display: flex; background-color: lightblue;
+            flex-direction: column;">
+                <span style="font-weight:bold ;">Pressure</span>
+                <span>{{this.weatherData?.current.pressure_mb}} </span>
+
+            </div>
+            <div style=" width: 200px; padding: 10px; background-color: lightblue; margin-left: 30px;  display: flex;
+            flex-direction: column;">
+                <span style="font-weight:bold ;">Humidity</span>
+                <span>{{this.weatherData?.current.humidity}} </span>
+            </div>
+
+        </div>
+        <div class="flex">
+            <div style=" width: 200px; padding: 10px; margin-left: 30px;  display: flex;
+        flex-direction: column;">
+                <span style="font-weight:bold ;">Sunrise</span>
+                <span>{{this.weatherData?.forecast.forecastday[0].astro.sunrise}} </span>
+            </div>
+            <div style=" width: 200px; padding: 10px;margin-left: 30px;  display: flex;
+        flex-direction: column;">
+                <span style="font-weight:bold ;">Sunset</span>
+                <span>{{this.weatherData?.forecast.forecastday[0].astro.sunset}}  </span>
+            </div>
+
+        </div>
+        <div>
+            <img width="500px" src="https://i.stack.imgur.com/hfU89.jpg " />
+        </div>
+    </mat-card-content>
+
+</mat-card>
